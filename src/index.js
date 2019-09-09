@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { HashRouter, Route, Switch } from "react-router-dom";
 import './index.css';
 // import App from './App';
 import * as serviceWorker from './serviceWorker';
@@ -12,7 +12,7 @@ import './index.css';
 
 const App = () => {
     return(
-        <BrowserRouter>
+        <HashRouter>
             <div>
                 <Header/>
 
@@ -22,7 +22,7 @@ const App = () => {
                     <Route component={NotFound} />
                 </Switch>
             </div>
-        </BrowserRouter>
+        </HashRouter>
     )
 }
 

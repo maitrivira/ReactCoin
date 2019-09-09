@@ -16,6 +16,7 @@ class Detail extends React.Component {
   }
 
   componentDidMount(){
+    console.log("state terbaru", this.state);
     const currencyId = this.props.match.params.id;
 
     this.fetchCurrency(currencyId);
