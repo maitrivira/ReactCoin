@@ -5,7 +5,7 @@ import { API_URL } from '../config' ;
 import { handleResponse } from '../helpers';
 import './Search.css';
 
-export default class Search extends React.Component{
+class Search extends React.Component{
     constructor(){
         super();
 
@@ -24,6 +24,7 @@ export default class Search extends React.Component{
 
         this.setState({searchQuery});
 
+        // If searchQuery isn't present, don't send request to server
         if(!searchQuery){
             return '';
         }
@@ -31,16 +32,16 @@ export default class Search extends React.Component{
         this.setState({loading: true})
 
         fetch(`${API_URL}/autocomplete?searchQuery=${searchQuery}`)
-        .then(handleResponse)
-        .then((result) => {
-            this.setState({
-            loading: false,
-            searchResults: result,
+            .then(handleResponse)
+            .then((result) => {
+                this.setState({
+                    loading: false,
+                    searchResults: result,
+                });
             });
-        });
     }
 
-    handleRedirect(currencyId){
+    handleRedirect(currencyId) {
         //Clear input value and close autocomplete container
         //By clearing searchQuery state
         this.setState({
@@ -65,7 +66,7 @@ export default class Search extends React.Component{
                         <div 
                             key={result.id}
                             className="Search-result"
-                            onClick={()=> this.handleRedirect(result.id)}
+                            onClick={() => this.handleRedirect(result.id)}
                         >
                             {result.name} ({result.symbol})
                         </div>
@@ -82,7 +83,7 @@ export default class Search extends React.Component{
                     </div>
                 </div>
             ) 
-        }  
+        }
     }
 
     render(){
@@ -112,3 +113,5 @@ export default class Search extends React.Component{
         )
     }
 }
+
+export default withRouter(Search);
